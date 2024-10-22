@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.util.DataHolder
 import com.example.data.models.remote.ForecastResponse
-import com.example.data.repository.WeatherRepository
+import com.example.data.usecase.GetWeekForecastUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class WeekForecastViewModel @Inject constructor(private val weatherRepository: WeatherRepository): ViewModel() {
+class WeekForecastViewModel @Inject constructor(private val getWeekForecastUseCase: GetWeekForecastUseCase) :
+    ViewModel() {
 
     private val _forecastUiStet = MutableStateFlow<ForecastUiState>(ForecastUiState.Loading)
     val forecastUiState = _forecastUiStet.asStateFlow()
@@ -34,16 +35,17 @@ class WeekForecastViewModel @Inject constructor(private val weatherRepository: W
         }
     }
 
-    private  fun getWeekForecast(city:String){
+    private fun getWeekForecast(city: String) {
         viewModelScope.launch {
 
-            when(val holder = weatherRepository.getWeekForecast(city)){
+            when (val holder = getWeekForecastUseCase.execute(city)) {
                 DataHolder.Loading -> {}
                 is DataHolder.Success -> {
                     holder.data?.let {
                         _forecastUiStet.value = ForecastUiState.Success(it)
                     }
                 }
+
                 is DataHolder.Fail -> {
                     _forecastUiStet.value = ForecastUiState.Failed(holder.e.message.toString())
                 }
@@ -53,11 +55,12 @@ class WeekForecastViewModel @Inject constructor(private val weatherRepository: W
     }
 }
 
-sealed interface ForecastUiState{
-    data object Loading: ForecastUiState
-    data class Failed(val message: String): ForecastUiState
-    data class Success(val forecastResponse: ForecastResponse): ForecastUiState
+sealed interface ForecastUiState {
+    data object Loading : ForecastUiState
+    data class Failed(val message: String) : ForecastUiState
+    data class Success(val forecastResponse: ForecastResponse) : ForecastUiState
 }
+
 sealed class ForecastIntent {
     data class FetchWeekForecast(val city: String) : ForecastIntent()
 }

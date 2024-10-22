@@ -1,15 +1,15 @@
 package com.example.data.repository
 
 import com.example.core.util.DataHolder
-import com.example.data.datasource.remote.RemoteDataSource
-import com.example.data.datasource.local.LocalDataSource
+import com.example.data.datasource.local.LocalDataSourceInterface
+import com.example.data.datasource.remote.RemoteDataSourceInterface
 import com.example.data.models.remote.CurrentResponse
 import com.example.data.models.remote.ForecastResponse
 import javax.inject.Inject
 
 class WeatherRepositoryImplementation @Inject constructor(
-    private val localDataSource: LocalDataSource,
-    private val remoteDataSource: RemoteDataSource
+    private val localDataSource: LocalDataSourceInterface,
+    private val remoteDataSource: RemoteDataSourceInterface
 ) : WeatherRepository {
 
     override suspend fun getCityWeather(city: String): DataHolder<CurrentResponse?> {

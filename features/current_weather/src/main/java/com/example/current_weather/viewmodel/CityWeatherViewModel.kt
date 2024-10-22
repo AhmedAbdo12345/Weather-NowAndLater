@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.util.DataHolder
 import com.example.data.models.remote.CurrentResponse
-import com.example.data.repository.WeatherRepository
+import com.example.data.usecase.GetCityWeatherUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel  @Inject constructor(private val weatherRepository: WeatherRepository): ViewModel() {
+class CityWeatherViewModel  @Inject constructor(private val getCityWeatherUseCase: GetCityWeatherUseCase): ViewModel() {
 
     private val _homeUiStet = MutableStateFlow<HomeUiState>(HomeUiState.Loading)
     val homeUiState = _homeUiStet.asStateFlow()
@@ -20,7 +20,7 @@ class HomeViewModel  @Inject constructor(private val weatherRepository: WeatherR
     fun getCityWeather(city:String){
         viewModelScope.launch {
 
-            when(val holder =weatherRepository.getCityWeather(city)){
+            when(val holder =getCityWeatherUseCase.execute(city)){
                 DataHolder.Loading -> {}
                 is DataHolder.Success -> {
                     holder.data?.let {

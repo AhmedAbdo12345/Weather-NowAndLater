@@ -36,14 +36,14 @@ import com.example.core.util.getDateTime
 import com.example.current_weather.R
 import com.example.weather_icon_library.getWeatherIcon
 import com.example.current_weather.viewmodel.HomeUiState
-import com.example.current_weather.viewmodel.HomeViewModel
+import com.example.current_weather.viewmodel.CityWeatherViewModel
 import com.example.data.models.remote.CurrentResponse
 import com.example.current_weather.ui.theme.LiteBlue
 import com.example.current_weather.ui.theme.Yellow
 
 private const val TAG = "DisplayCurrentWeatherSc"
 @Composable
-fun CurrentWeatherScreen(viewModel: HomeViewModel = hiltViewModel(), navController: NavHostController, cityName: String) {
+fun CurrentWeatherScreen(viewModel: CityWeatherViewModel = hiltViewModel(), navController: NavHostController, cityName: String) {
     val homeUiState by viewModel.homeUiState.collectAsState()
     LaunchedEffect(Unit) {
         viewModel.getCityWeather(cityName)

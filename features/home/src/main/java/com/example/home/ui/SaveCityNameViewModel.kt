@@ -12,17 +12,9 @@ import javax.inject.Inject
 @HiltViewModel
 class SaveCityNameViewModel @Inject constructor(private val weatherRepository: WeatherRepository): ViewModel() {
 
-    private val _cityUiState = MutableStateFlow("")
-    val cityUiState = _cityUiState.asStateFlow()
-
     private val _saveCityUiState = MutableStateFlow(false)
     val saveCityUiState = _saveCityUiState.asStateFlow()
 
-    fun getCity(){
-        viewModelScope.launch {
-            _cityUiState.value =  weatherRepository.getCity().orEmpty()
-        }
-    }
     fun saveCity(city: String){
         viewModelScope.launch {
             _saveCityUiState.value = weatherRepository.saveCity(city)

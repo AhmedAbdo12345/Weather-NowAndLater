@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="temperature">Temperature</string>
+    <string name="temp_min">Temp Min</string>
+    <string name="temp_max">Temp Max</string>
+    <string name="sea_level">Sea Level</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+</resources>

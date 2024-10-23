@@ -28,6 +28,10 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      # Publish weather_icon_library to Maven Local
+      - name: Publish to Maven Local
+        run: ./gradlew :weather_icon_library:publishToMavenLocal
+
       # Run lint checks
       - name: Run Android Lint
         run: ./gradlew lint

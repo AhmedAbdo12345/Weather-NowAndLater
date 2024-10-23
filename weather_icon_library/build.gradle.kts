@@ -45,6 +45,15 @@ dependencies {
 }
 publishing {
     publications {
+        register<MavenPublication>("debug") {
+            groupId = "com.example"
+            artifactId = "weatherIconLibrary"
+            version = "1.0.0"
+
+            afterEvaluate {
+                from(components["debug"])
+            }
+        }
         register<MavenPublication>("release") {
             groupId = "com.example"
             artifactId = "weatherIconLibrary"

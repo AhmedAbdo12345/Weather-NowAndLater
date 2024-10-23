@@ -3,7 +3,7 @@ package com.example.data.datasource.local
 import com.example.data.database.DataStoreManger
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(val dataStoreManger: DataStoreManger) :
+class LocalDataSource @Inject constructor(private val dataStoreManger: DataStoreManger) :
     LocalDataSourceInterface {
 
     override suspend fun getCity(): String? {

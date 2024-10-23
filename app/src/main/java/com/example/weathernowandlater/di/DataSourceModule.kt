@@ -20,7 +20,6 @@ object DataSourceModule {
     @Provides
     fun getLocalDataSource(dataStoreManger: DataStoreManger) = LocalDataSource(dataStoreManger)
 
-
     @Provides
     fun getRemoteDataSource(weatherServices: WeatherServices) = RemoteDataSource(weatherServices)
 

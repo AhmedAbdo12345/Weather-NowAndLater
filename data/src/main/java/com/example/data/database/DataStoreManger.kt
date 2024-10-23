@@ -16,7 +16,7 @@ class DataStoreManger @Inject constructor(val context: Context) {
     private val dataStore = context.dataStore
 
       suspend fun getCity(): String? {
-          val preferences = context.dataStore.data.first()
+          val preferences = dataStore.data.first()
           return preferences[CITY_NAME_KEY]
     }
 

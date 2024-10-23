@@ -31,38 +31,44 @@ class WeatherServicesTest {
 
     @Test
     fun testGetCityWeatherSuccessfulResponse() = runBlocking {
+        // Given
         val mockResponse = Response.success(createMockCityWeatherResponse())
-
         `when`(mockWeatherServices.getCityWeather(city = "Cairo")).thenReturn(mockResponse)
 
+        // When
         val response = mockWeatherServices.getCityWeather(city = "Cairo")
 
+        // Then
         assertTrue(response.isSuccessful)
         assertEquals("Cairo", response.body()?.name)
     }
 
     @Test
     fun testGetWeekForecastSuccessfulResponse() = runBlocking {
+        // Given
         val mockResponse = Response.success(createMockForecastResponse())
-
         `when`(mockWeatherServices.getWeekForecast(city = "Cairo")).thenReturn(mockResponse)
 
+        // When
         val response = mockWeatherServices.getWeekForecast(city = "Cairo")
 
+        // Then
         assertTrue(response.isSuccessful)
         assertEquals("Cairo", response.body()?.city?.name)
     }
 
     @Test
     fun testGetCityWeatherFailedResponse() = runBlocking {
+        // Given
         val mockErrorResponse = createMockErrorResponse()
-
         `when`(mockWeatherServices.getCityWeather(city = "UnknownCity")).thenReturn(
             mockErrorResponse
         )
 
+        // When
         val response = mockWeatherServices.getCityWeather(city = "UnknownCity")
 
+        // Then
         assertFalse(response.isSuccessful)
         assertEquals(404, response.code())
     }

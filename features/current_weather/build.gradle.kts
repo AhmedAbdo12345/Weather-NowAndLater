@@ -73,7 +73,6 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
@@ -83,10 +82,10 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.weathericonlibrary)
 
     implementation(project(":core"))
     implementation(project(":data"))
-    implementation(libs.weathericonlibrary)
 
 
 }

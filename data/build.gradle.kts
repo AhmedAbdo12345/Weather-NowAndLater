@@ -4,7 +4,6 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
-
 android {
     namespace = "com.example.data"
     compileSdk = 34
@@ -17,6 +16,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        val apiKey = project.findProperty("API_KEY")?.toString() ?: "Api key Not Found"
+
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildTypes {
@@ -37,6 +39,8 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"

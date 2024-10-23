@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 private const val TAG = "DataStoreManger"
-private val Context.dataStore by preferencesDataStore(name = "city_prefs")
-private val CITY_NAME_KEY = stringPreferencesKey("city_name")
+val Context.dataStore by preferencesDataStore(name = "city_prefs")
+val CITY_NAME_KEY = stringPreferencesKey("city_name")
 
 class DataStoreManger @Inject constructor(val context: Context) {
     private val dataStore = context.dataStore

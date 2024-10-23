@@ -13,6 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up JDK 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
 
       # Run lint checks
       - name: Run Android Lint
@@ -26,4 +35,3 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      

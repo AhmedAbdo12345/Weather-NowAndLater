@@ -31,6 +31,7 @@ robolectricVersion = "4.9"
 turbineVersion = "0.12.1"
 uiTestJunit4 = "1.7.4"
 uiTestManifest = "1.7.4"
+weathericonlibrary = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -73,6 +74,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectricVersion" }
 ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "uiTestJunit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
+weathericonlibrary = { module = "com.example:weatherIconLibrary", version.ref = "weathericonlibrary" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

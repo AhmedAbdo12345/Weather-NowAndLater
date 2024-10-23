@@ -56,13 +56,12 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(project(":core"))
     implementation(project(":data"))
-    implementation(project(":weather_icon_library"))
+    implementation(libs.weathericonlibrary)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
-
 
 
     // Mockito

@@ -86,8 +86,7 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":data"))
-    implementation(project(":weather_icon_library"))
-
+    implementation(libs.weathericonlibrary)
 
 
 }

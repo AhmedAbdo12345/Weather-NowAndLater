@@ -45,21 +45,13 @@ dependencies {
 }
 publishing {
     publications {
-        register<MavenPublication>("release") {
+        register<MavenPublication>("debug") {
             groupId = "com.example"
             artifactId = "weatherIconLibrary"
             version = "1.0.0"
             afterEvaluate {
-                from(components["release"])
+                from(components["debug"])
             }
-
-        }
-    }
-    repositories {
-        mavenLocal()
-        maven {
-            name = "myrepo"
-            url = uri(layout.buildDirectory.dir("repo"))
         }
     }
 }

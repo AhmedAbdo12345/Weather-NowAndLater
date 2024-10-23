@@ -15,7 +15,7 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@4.2.2
+        uses: actions/checkout@v4.2.2
 
       # Set up JDK 11
       - name: Set up JDK 17

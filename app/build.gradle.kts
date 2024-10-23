@@ -92,4 +92,12 @@ dependencies {
     implementation(project(":features:home"))
     implementation(project(":features:current_weather"))
     implementation(project(":features:week_forecast"))
+
+    // Mockito
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    // For coroutines testing
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation (libs.app.turbine)
+    testImplementation(libs.mockito.mockito.inline)
 }

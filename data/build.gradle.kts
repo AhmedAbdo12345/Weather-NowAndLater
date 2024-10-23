@@ -83,7 +83,6 @@ dependencies {
     // Mockito
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
-    androidTestImplementation(libs.robolectric.robolectric)
 
     // Compose UI Testing
     androidTestImplementation(libs.ui.test.junit4)

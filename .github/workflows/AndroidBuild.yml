@@ -30,7 +30,7 @@ jobs:
 
       # Publish weather_icon_library to Maven Local
       - name: Publish to Maven Local
-        run: ./gradlew :weatherIconLibrary:publishToMavenLocal
+        run: ./gradlew :weather_icon_library:publishToMavenLocal
 
       # Run lint checks
       - name: Run Android Lint

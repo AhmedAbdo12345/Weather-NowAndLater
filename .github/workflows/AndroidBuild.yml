@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: WeatherNowAndLater.apk
-          path: app/build/output/apk/debug/weatherNowAndLater.apk
+          path: app/build/outputs/apk/debug/weatherNowAndLater.apk

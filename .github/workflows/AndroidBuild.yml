@@ -1,0 +1,29 @@
+name: Android CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Run lint checks
+      - name: Run Android Lint
+        run: ./gradlew lint
+
+      # Run unit tests
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+        # Build Gradle
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      

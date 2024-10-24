@@ -18,7 +18,7 @@ object NetworkModule {
     private const val BASE_URL = "https://api.openweathermap.org/"
 
     private val logging: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(
-        HttpLoggingInterceptor.Level.BASIC
+        HttpLoggingInterceptor.Level.BODY
     )
 
     @Provides

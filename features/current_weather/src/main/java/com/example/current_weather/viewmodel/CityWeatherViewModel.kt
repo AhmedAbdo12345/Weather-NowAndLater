@@ -20,7 +20,7 @@ class CityWeatherViewModel  @Inject constructor(private val getCityWeatherUseCas
     fun getCityWeather(city:String){
         viewModelScope.launch {
 
-            when(val holder =getCityWeatherUseCase.execute(city)){
+            when(val holder =getCityWeatherUseCase(city)){
                 DataHolder.Loading -> {}
                 is DataHolder.Success -> {
                     holder.data?.let {

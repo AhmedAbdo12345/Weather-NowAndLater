@@ -17,26 +17,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.core.util.CURRENT_WEATHER
+import com.example.home.R
 
+private const val TAG = "CityNameScreen"
 @Composable
 fun CityNameScreen(
     viewModel: SaveCityNameViewModel= hiltViewModel(),
     navController: NavHostController
 ) {
-
-
     val saveCityUiState by viewModel.saveCityUiState.collectAsState()
 
     when (saveCityUiState) {
         true -> {
-            Log.d("Suez", "CityNameScreen: true")
+            Log.d(TAG, "CityNameScreen: true")
         }
         false -> {
-            Log.d("zxc", "CityNameScreen: false")
+            Log.d(TAG, "CityNameScreen: false")
         }
     }
     var city by remember {
@@ -55,7 +56,7 @@ fun CityNameScreen(
             onValueChange = { query ->
                 city = query
             },
-            label = { Text(text = "Enter City Name") },
+            label = { Text(text = stringResource(R.string.enter_city_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 

@@ -38,7 +38,7 @@ class WeekForecastViewModel @Inject constructor(private val getWeekForecastUseCa
     private fun getWeekForecast(city: String) {
         viewModelScope.launch {
 
-            when (val holder = getWeekForecastUseCase.execute(city)) {
+            when (val holder = getWeekForecastUseCase(city)) {
                 DataHolder.Loading -> {}
                 is DataHolder.Success -> {
                     holder.data?.let {

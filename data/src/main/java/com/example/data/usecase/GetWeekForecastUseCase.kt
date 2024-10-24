@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 
 class GetWeekForecastUseCase @Inject constructor(private val weatherRepository: WeatherRepository) {
-    suspend fun execute(city: String) = weatherRepository.getWeekForecast(city)
+    suspend operator fun invoke(city: String) = weatherRepository.getWeekForecast(city)
 }

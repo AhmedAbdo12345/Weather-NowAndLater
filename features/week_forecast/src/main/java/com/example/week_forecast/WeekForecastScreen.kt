@@ -1,5 +1,7 @@
 package com.example.week_forecast
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -19,14 +21,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.core.theme.LiteBlue
+import com.example.core.util.CircularProgressBar
 import com.example.core.util.changeFormatTime
+import com.example.core.util.convertKelvinToCelsius
 import com.example.data.models.remote.ForecastResponse
 import com.example.data.models.remote.ListItem
 
+private const val TAG = "WeekForecastScreen"
 @Composable
 fun WeekForecastScreen(viewModel: WeekForecastViewModel = hiltViewModel(),city: String){
 
@@ -37,6 +44,7 @@ fun WeekForecastScreen(viewModel: WeekForecastViewModel = hiltViewModel(),city: 
 
     when (uiState) {
         is ForecastUiState.Loading -> {
+            CircularProgressBar()
         }
         is ForecastUiState.Success -> {
             val forecast = (uiState as ForecastUiState.Success).forecastResponse
@@ -44,6 +52,8 @@ fun WeekForecastScreen(viewModel: WeekForecastViewModel = hiltViewModel(),city: 
         }
         is ForecastUiState.Failed -> {
             val errorMessage = (uiState as ForecastUiState.Failed).message
+            Log.d(TAG, "WeekForecastScreen: $errorMessage")
+            Toast.makeText(LocalContext.current, errorMessage, Toast.LENGTH_SHORT).show()
         }
     }
 }
@@ -69,7 +79,7 @@ fun WeatherListItem(item: ListItem) {
     Row(
         modifier = Modifier
             .padding(8.dp)
-            .background(Color(0xFFE1F5FE), RoundedCornerShape(8.dp))
+            .background(LiteBlue, RoundedCornerShape(8.dp))
             .padding(4.dp)
             .fillMaxWidth()
             .height(100.dp),
@@ -81,7 +91,7 @@ fun WeatherListItem(item: ListItem) {
             Text(text = "${changeFormatTime(it).first}   ${changeFormatTime(it).second}"  )
         }
 
-        Text(text =item.main?.temp.toString(), fontSize = 14.sp)
+        Text(text = convertKelvinToCelsius(item.main?.temp), fontSize = 14.sp)
 
         Icon(
             painter = painterResource(id = com.example.weather_icon_library.getWeatherIcon(item.weather?.firstOrNull()?.icon.orEmpty())),

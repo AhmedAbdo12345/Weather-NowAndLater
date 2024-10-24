@@ -1,16 +1,16 @@
 package com.example.core.extensions
 
 import com.example.core.util.DataHolder
-import retrofit2.Response
+import retrofit2.Call
+import retrofit2.awaitResponse
 
-fun <T> Response<T>.asDataHolderResponse(): DataHolder<T?> {
-    return when (this.isSuccessful) {
-        true -> {
-            DataHolder.Success(body())
-        }
+suspend fun <T> Call<T>.asDataHolderResponse(): DataHolder<T?> {
+    val exception =
+        kotlin.runCatching {
+            awaitResponse()
+        }.onSuccess {
+            return DataHolder.Success(it.body())
+        }.exceptionOrNull()
 
-        false -> {
-            DataHolder.Fail(Exception())
-        }
-    }
+    return DataHolder.Fail(requireNotNull(exception))
 }

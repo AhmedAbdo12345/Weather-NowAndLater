@@ -47,7 +47,7 @@ class WeekForecastViewModelTest {
         val mockWeekForecastResponse = createMockForecastResponse()
         val mockResponse: DataHolder<ForecastResponse?> = DataHolder.Success(mockWeekForecastResponse)
 
-        `when`(getWeekForecastUseCase.execute(city = "Cairo")).thenReturn(mockResponse)
+        `when`(getWeekForecastUseCase(city = "Cairo")).thenReturn(mockResponse)
 
         // When
         viewModel.intentChannel.send(ForecastIntent.FetchWeekForecast("Cairo"))
@@ -68,7 +68,7 @@ class WeekForecastViewModelTest {
     fun `getCityWeather should emit Failed when use case returns failure`() = runTest {
         // Given
         val errorMessage = "City not found"
-        whenever(getWeekForecastUseCase.execute("Cairo")).thenReturn(DataHolder.Fail(Exception(errorMessage)))
+        whenever(getWeekForecastUseCase("Cairo")).thenReturn(DataHolder.Fail(Exception(errorMessage)))
 
         // When
         viewModel.intentChannel.send(ForecastIntent.FetchWeekForecast("Cairo"))
@@ -84,7 +84,7 @@ class WeekForecastViewModelTest {
     @Test
     fun `getCityWeather should remain in Loading state when use case returns Loading`() = runTest {
         // Given
-        whenever(getWeekForecastUseCase.execute("Cairo")).thenReturn(DataHolder.Loading)
+        whenever(getWeekForecastUseCase("Cairo")).thenReturn(DataHolder.Loading)
 
         // When
         viewModel.intentChannel.send(ForecastIntent.FetchWeekForecast("Cairo"))

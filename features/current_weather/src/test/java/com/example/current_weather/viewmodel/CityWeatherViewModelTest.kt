@@ -48,7 +48,7 @@ class CityWeatherViewModelTest {
         val mockCurrentResponse = createMockCityWeatherResponse()
         val mockResponse: DataHolder<CurrentResponse?> = DataHolder.Success(mockCurrentResponse)
 
-        `when`(getCityWeatherUseCase.execute(city = "Cairo")).thenReturn(mockResponse)
+        `when`(getCityWeatherUseCase(city = "Cairo")).thenReturn(mockResponse)
 
         // When
         viewModel.getCityWeather("Cairo")
@@ -69,7 +69,7 @@ class CityWeatherViewModelTest {
     fun `getCityWeather should emit Failed when use case returns failure`() = runTest {
         // Given
         val errorMessage = "City not found"
-        whenever(getCityWeatherUseCase.execute("Cairo")).thenReturn(DataHolder.Fail(Exception(errorMessage)))
+        whenever(getCityWeatherUseCase("Cairo")).thenReturn(DataHolder.Fail(Exception(errorMessage)))
 
         // When
         viewModel.getCityWeather("Cairo")
@@ -85,7 +85,7 @@ class CityWeatherViewModelTest {
     @Test
     fun `getCityWeather should remain in Loading state when use case returns Loading`() = runTest {
         // Given
-        whenever(getCityWeatherUseCase.execute("Cairo")).thenReturn(DataHolder.Loading)
+        whenever(getCityWeatherUseCase("Cairo")).thenReturn(DataHolder.Loading)
 
         // When
         viewModel.getCityWeather("Cairo")

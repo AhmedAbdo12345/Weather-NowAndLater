@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,8 @@ fun CityNameScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -70,7 +72,7 @@ fun CityNameScreen(
                 Text(
                     text = "Get Weather in $city",
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .align(Alignment.CenterVertically)
                         .padding(vertical = 8.dp)
                 )
             }

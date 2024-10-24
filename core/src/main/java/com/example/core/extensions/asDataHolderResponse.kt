@@ -2,6 +2,7 @@ package com.example.core.extensions
 
 import com.example.core.util.DataHolder
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.awaitResponse
 
 suspend fun <T> Call<T>.asDataHolderResponse(): DataHolder<T?> {
